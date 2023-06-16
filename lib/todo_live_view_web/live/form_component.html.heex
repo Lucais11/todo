@@ -1,0 +1,20 @@
+<%!--  
+phx-target={@myself} indicates that events will be handled by the same component. 
+create_todo event fires when the user submits the form. validate event will fire on input change.
+--%>
+<div>
+  <.form
+    let={f}
+    for={@changeset}
+    id="todo-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="create_todo"
+  >
+    <%= label(f, :text) %>
+    <%= text_input(f, :text) %>
+    <%= error_tag(f, :text) %>
+
+    <%= submit("Add todo", phx_disable_with: "Adding...") %>
+  </.form>
+</div>
